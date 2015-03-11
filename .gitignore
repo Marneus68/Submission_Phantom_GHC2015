@@ -1,0 +1,13 @@
+/out
+.gradle
+/local.properties
+
+/.idea/workspace.xml
+/.idea/libraries
+/.idea/workspace.xml
+/.idea/tasks.xml
+/.idea/dictionaries
+
+.DS_Store
+/build
+*.swp

@@ -67,6 +67,7 @@ public class Population {
             System.out.print(folderPath.mkdirs() + "\n");
             int i = 0;
             for (Solution s : solutions) {
+                s.display();
                 s.writeSolution(folderPath.getAbsolutePath() + "/" + (i++) + ".out");
             }
         } catch (Exception e) {

@@ -54,7 +54,7 @@ public class Solution {
                     continue;
                 }
                 int slotSize = getSlotSizeAvailable(i, slotIndex);
-                //System.out.println(slotSize);
+                System.out.println("slotsize:" + slotSize);
                 Input.Server randServer = getRandomServerOf(slotSize, servers);
                 if(randServer == null){
                     System.out.println("Fail to place");
@@ -63,7 +63,7 @@ public class Solution {
                 else {
                     placeServer(randServer, i, slotIndex);
                     slotIndex += randServer.slot;
-                    System.out.println("SlotPos:"+ slotIndex);
+                    System.out.println("indexServer:"+ randServer.index);
                 }
             }
         }
@@ -80,7 +80,7 @@ public class Solution {
     }
 
     public void placeServer(Input.Server serverIn, int x, int y){
-        for(int i = y; i < serverIn.slot; i++){
+        for(int i = y; i < (serverIn.slot+y); i++){
             result[x][i] = serverIn.index;
         }
     }
@@ -143,6 +143,15 @@ public class Solution {
             }
         }
         return null;
+    }
+
+    public void display(){
+        for (int i = 0; i < curInput.getRows(); i++) {
+            for (int j = 0; j < curInput.getSlots(); j++) {
+                System.out.print(result[i][j]+" ");
+            }
+            System.out.println();
+        }
     }
 
 }

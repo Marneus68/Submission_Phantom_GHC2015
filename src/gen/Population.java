@@ -4,6 +4,7 @@ import gen.manipulations.IManipulation;
 import in.Input;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -51,16 +52,17 @@ public class Population {
 
     public void saveGeneration(){
 
-        File folderPath = new File(pathGeneration+ "/" + launchDate.toString() + "/gen_"+ generation);
+        java.util.Date date= new java.util.Date();
 
-        folderPath.mkdirs();
+        try {
+            File folderPath = new File("gens/"+new Timestamp(date.getTime())+"/gen_"+generation);
+            System.out.print(folderPath.mkdirs() + "\n");
 
-        for(Solution s : solutions){
-            s.writeSolution(folderPath.getAbsolutePath());
+            for (Solution s : solutions) {
+                s.writeSolution(folderPath.getAbsolutePath());
+            }
+        } catch (Exception e) {
+            System.err.print("# Population Exception: " + e.getMessage());
         }
-
     }
-
-
-
 }

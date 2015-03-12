@@ -1,12 +1,8 @@
 package in;
 
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.util.HashMap;
-import java.util.IntSummaryStatistics;
 
 /**
  * Created by hugo on 12/03/15.
@@ -73,7 +69,7 @@ public class Input {
             System.err.print("Input Exception: " + e.getMessage());
         }
 
-        System.out.print("# Input file \"" + file + "\"  says... \n# " + rows + " rows of " + slots + " slots where " + pools + " pools of " + servers.size() + " servers are to be allocated with " + unavailableSlots.size() + " unavailable slots.");
+        System.out.print("# Input file \"" + file + "\"  says... \n# " + rows + " rows of " + slots + " slots where " + pools + " pools of " + servers.size() + " servers are to be allocated with " + unavailableSlots.size() + " unavailable slots.\n");
     }
 
     public int getRows() {

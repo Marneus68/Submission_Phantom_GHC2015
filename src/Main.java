@@ -1,3 +1,4 @@
+import gen.Population;
 import in.Input;
 
 /**
@@ -8,5 +9,15 @@ import in.Input;
 public class Main {
     public static void main(String [] args) {
         Input in = new Input("./dc.in");
+        Population pop = new Population(in, 5);
+
+        pop.saveGeneration();
+
+        /*
+        for (int i = 0; i < 6; i++) {
+            pop.saveGeneration();
+            pop = pop.getNextGeneration();
+        }
+        */
     }
 }

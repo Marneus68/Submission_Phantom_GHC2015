@@ -1,4 +1,4 @@
-import Solution.Solution;
+import in.Input;
 
 /**
  * File created by duane
@@ -7,7 +7,6 @@ import Solution.Solution;
 
 public class Main {
     public static void main(String [] args) {
-        Solution solution = new HelloWorldSolution();
-        solution.run();
+        Input in = new Input("./dc.in");
     }
 }

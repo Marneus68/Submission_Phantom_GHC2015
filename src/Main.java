@@ -1,4 +1,5 @@
-import Solution.Solution;
+import gen.Population;
+import in.Input;
 
 /**
  * File created by duane
@@ -7,7 +8,16 @@ import Solution.Solution;
 
 public class Main {
     public static void main(String [] args) {
-        Solution solution = new HelloWorldSolution();
-        solution.run();
+        Input in = new Input("./dc.in");
+        Population pop = new Population(in, 5);
+
+        pop.saveGeneration();
+
+        /*
+        for (int i = 0; i < 6; i++) {
+            pop.saveGeneration();
+            pop = pop.getNextGeneration();
+        }
+        */
     }
 }

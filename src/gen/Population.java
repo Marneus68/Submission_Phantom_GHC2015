@@ -65,11 +65,12 @@ public class Population {
         try {
             File folderPath = new File("gens/"+stamp+"/gen_"+generation);
             System.out.print(folderPath.mkdirs() + "\n");
-
+            int i = 0;
             for (Solution s : solutions) {
-                s.writeSolution(folderPath.getAbsolutePath());
+                s.writeSolution(folderPath.getAbsolutePath() + "/" + (i++) + ".out");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.print("# Population Exception: " + e.getMessage());
         }
     }

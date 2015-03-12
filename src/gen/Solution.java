@@ -2,6 +2,9 @@ package gen;
 
 import in.Input;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,12 +21,14 @@ public class Solution {
 
     public Solution(Input input){
 
+        fillMap(input);
+
     }
 
 
     public void fillMap(Input inputIn){
         curInput = inputIn;
-        HashMap<Integer, Input.Server> servers  = inputIn.getServers();
+        HashMap<Integer, Input.Server> servers  = (HashMap<Integer, Input.Server>) inputIn.getServers().clone();
         HashMap<Integer, Input.UnavailableSlot>  unavailableSlots = inputIn.getUnavailableSlots();
 
         //set undispo
@@ -48,7 +53,7 @@ public class Solution {
                     continue;
                 }
                 int slotSize = getSlotSizeAvailable(i, slotIndex);
-                Input.Server randServer = getRandomServerOf(slotSize, curInput.getServers());
+                Input.Server randServer = getRandomServerOf(slotSize, servers);
                 if(randServer == null){
                  slotIndex++;
                 }
@@ -62,7 +67,7 @@ public class Solution {
 
     public int getSlotSizeAvailable(int x, int y){
         int slotCap = 0;
-        while(result[x][y] != -1 && y < curInput.getSlots()){
+        while(y < curInput.getSlots() && result[x][y] != -1){
             y++;
             slotCap++;
         }
@@ -99,8 +104,40 @@ public class Solution {
 
     public void writeSolution(String path){
 
+        BufferedWriter buffer;
+        try {
+            buffer = new BufferedWriter(new FileWriter(path));
+
+            int currentGroup = 0;
+            for (int i = 0; i < curInput.getServers().size(); i++) {
+
+                int[] position = getPosServer(i);
+                if (position == null) {
+                    buffer.write("x\n");
+                }else{
+                    buffer.write(position[0]+" "+ position[1] + " " + currentGroup + "\n"); //curInput.getServers().get(i).group
+                }
+                currentGroup = i * (curInput.getPoolsCount() / curInput.getServersCount());
+            }
+            buffer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
+
+    }
+
+    private int[] getPosServer(int index){
+        for (int i = 0; i < curInput.getRows(); i++) {
+            for (int j = 0; j < curInput.getSlots(); j++) {
+                if(result[i][j] == index){
+                    return new int[]{ i , j};
+                }
+            }
+        }
+        return null;
     }
 
 }

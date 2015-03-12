@@ -20,6 +20,7 @@ public class Input {
         public int index;
         public int slot;
         public int capacity;
+        public int group;
     }
 
     public class UnavailableSlot {

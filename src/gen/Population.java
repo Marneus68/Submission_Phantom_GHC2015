@@ -5,4 +5,13 @@ package gen;
  */
 public class Population {
 
+    public Population getNextGeneration(){
+        return null;
+    }
+    public void saveGeneration(){
+
+    }
+
+    public int generation;
+
 }

@@ -9,11 +9,11 @@ import in.Input;
 public class Main {
     public static void main(String [] args) {
         Input in = new Input("./dc.in");
-        Population pop = new Population(in, 5);
+        Population pop = new Population(in, 1);
 
         pop.saveGeneration();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 1; i++) {
             pop.saveGeneration();
             pop = pop.getNextGeneration();
         }

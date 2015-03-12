@@ -53,6 +53,7 @@ public class Solution {
                     continue;
                 }
                 int slotSize = getSlotSizeAvailable(i, slotIndex);
+                //System.out.println(slotSize);
                 Input.Server randServer = getRandomServerOf(slotSize, servers);
                 if(randServer == null){
                  slotIndex++;
@@ -76,7 +77,7 @@ public class Solution {
     }
 
     public void placeServer(Input.Server serverIn, int x, int y){
-        for(int i = y; i < serverIn.capacity; i++){
+        for(int i = y; i < serverIn.slot; i++){
             result[x][i] = serverIn.index;
         }
     }

@@ -32,8 +32,8 @@ public class Solution {
         HashMap<Integer, Input.UnavailableSlot>  unavailableSlots = inputIn.getUnavailableSlots();
 
         //set undispo
-        int range = 100;
-        int col = 100;
+        int range = inputIn.getRows();
+        int col = inputIn.getSlots();
         result = new int[range][col];
 
         for (int i = 0; i < unavailableSlots.size(); i++){
@@ -45,6 +45,7 @@ public class Solution {
 
         int slotIndex = 0;
         for(int i = 0; i < inputIn.getRows(); i++){
+            System.out.println("ranger : "+i);
             slotIndex = 0;
             while(slotIndex < inputIn.getSlots()){
 
@@ -56,11 +57,13 @@ public class Solution {
                 //System.out.println(slotSize);
                 Input.Server randServer = getRandomServerOf(slotSize, servers);
                 if(randServer == null){
-                 slotIndex++;
+                    System.out.println("Fail to place");
+                    slotIndex++;
                 }
                 else {
                     placeServer(randServer, i, slotIndex);
-                    slotIndex += getSlotSizeAvailable(i, slotIndex);
+                    slotIndex += randServer.slot;
+                    System.out.println("SlotPos:"+ slotIndex);
                 }
             }
         }

@@ -67,10 +67,11 @@ public class Solution {
 
     public int getSlotSizeAvailable(int x, int y){
         int slotCap = 0;
-        while(y < curInput.getSlots() && result[x][y] != -1){
+        do{
             y++;
             slotCap++;
-        }
+        }while(y < curInput.getSlots() && result[x][y] != -1);
+
         return slotCap;
     }
 
@@ -117,7 +118,7 @@ public class Solution {
                 }else{
                     buffer.write(position[0]+" "+ position[1] + " " + currentGroup + "\n"); //curInput.getServers().get(i).group
                 }
-                currentGroup = i * (curInput.getPoolsCount() / curInput.getServersCount());
+                currentGroup = (int) Math.floor(i * ((float)curInput.getPoolsCount() / curInput.getServersCount()));
             }
             buffer.close();
 

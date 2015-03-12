@@ -23,7 +23,12 @@ public class Population {
 
     public int populationSize;
 
+    static String stamp;
+
     public Population(Input in, int popSize){
+        java.util.Date date= new java.util.Date();
+        stamp = new Timestamp(date.getTime()).toString();
+
         populationSize = popSize;
 
         solutions = new ArrayList<Solution>();
@@ -42,11 +47,14 @@ public class Population {
     public Population getNextGeneration(){
 
         Population newPopulation = new Population(this.populationSize);
+        /*
         for(IManipulation manip : manipulations){
 
             manip.doManipulation(this, newPopulation);
 
         }
+        */
+        newPopulation.generation = generation+1;
         return newPopulation;
     }
 
@@ -55,7 +63,7 @@ public class Population {
         java.util.Date date= new java.util.Date();
 
         try {
-            File folderPath = new File("gens/"+new Timestamp(date.getTime())+"/gen_"+generation);
+            File folderPath = new File("gens/"+stamp+"/gen_"+generation);
             System.out.print(folderPath.mkdirs() + "\n");
 
             for (Solution s : solutions) {

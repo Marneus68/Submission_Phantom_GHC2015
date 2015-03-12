@@ -13,11 +13,9 @@ public class Main {
 
         pop.saveGeneration();
 
-        /*
         for (int i = 0; i < 6; i++) {
             pop.saveGeneration();
             pop = pop.getNextGeneration();
         }
-        */
     }
 }

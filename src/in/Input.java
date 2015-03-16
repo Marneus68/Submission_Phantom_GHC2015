@@ -2,6 +2,7 @@ package in;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -10,17 +11,33 @@ import java.util.HashMap;
 
 public class Input {
 
-    public class Server {
+    public class Server implements Cloneable{
         public Server(int index, int slot, int capacity) {
             this.index = index;
             this.slot = slot;
             this.capacity = capacity;
+            this.position = null;
+            this.group = -1;
         }
 
         public int index;
         public int slot;
         public int capacity;
         public int group;
+        public int[] position;
+
+        public Object clone() {
+            Server o = null;
+            try {
+                o = (Server) super.clone();
+                if(this.position != null){
+                    o.position = Arrays.copyOf(this.position, this.position.length);
+                }
+            } catch(CloneNotSupportedException cnse) {
+                cnse.printStackTrace(System.err);
+            }
+            return o;
+        }
     }
 
     public class UnavailableSlot {

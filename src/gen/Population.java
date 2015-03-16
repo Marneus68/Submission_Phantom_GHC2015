@@ -2,6 +2,7 @@ package gen;
 
 import gen.manipulations.IManipulation;
 import in.Input;
+import test.SolutionTester;
 
 import java.io.File;
 import java.sql.Timestamp;
@@ -64,11 +65,14 @@ public class Population {
 
         try {
             File folderPath = new File("gens/"+stamp+"/gen_"+generation);
-            System.out.print(folderPath.mkdirs() + "\n");
+            folderPath.mkdirs();
             int i = 0;
             for (Solution s : solutions) {
-                s.display();
+                //s.display();
                 s.writeSolution(folderPath.getAbsolutePath() + "/" + (i++) + ".out");
+                SolutionTester tester = new SolutionTester(s);
+                tester.testServerNotOverflow();
+                System.out.println("Score :"+tester.scoreSolution());
             }
         } catch (Exception e) {
             e.printStackTrace();

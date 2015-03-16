@@ -9,9 +9,7 @@ import in.Input;
 public class Main {
     public static void main(String [] args) {
         Input in = new Input("./dc.in");
-        Population pop = new Population(in, 1);
-
-        pop.saveGeneration();
+        Population pop = new Population(in, 10);
 
         for (int i = 0; i < 1; i++) {
             pop.saveGeneration();
